@@ -9,8 +9,8 @@ const ctx = $canvas.getContext('2d');
 const screenWidht = window.innerWidth
 const screenHeight = window.innerHeight
 
-$canvas.width = screenWidht < 425 ? screenWidht : 425
-$canvas.height = screenHeight < 544 ? screenHeight : 544
+$canvas.width = screenWidht < 430 ? screenWidht : 430
+$canvas.height = screenHeight
 
 // tamaño de pelota
 
