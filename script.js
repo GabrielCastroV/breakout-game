@@ -6,9 +6,11 @@ const $sprite = document.querySelector('#sprite')
 const ctx = $canvas.getContext('2d');
 
 // tamaño del tablero
+const screenWidht = window.innerWidth
+const screenHeight = window.innerHeight
 
-$canvas.width = 480
-$canvas.height = 520
+$canvas.width = screenWidht < 425 ? screenWidht : 425
+$canvas.height = screenHeight < 544 ? screenHeight : 544
 
 // tamaño de pelota
 
@@ -21,8 +23,8 @@ let y = $canvas.height - 30;
 
 // velocidad y sentido de la pelota 
 
-let dx = 5
-let dy = -6
+let dx = 3
+let dy = -3
 
 // variables de la barra 
 
@@ -39,11 +41,11 @@ let leftKeyPressed = false;
 
 const brickRowCount = 6;
 const brickColumnCount = 13;
-const brickWidth = 30;
-const brickHeight = 14;
-const brickPadding = 2;
+const brickWidth = $canvas.width / 16;
+const brickHeight = $canvas.height / 40;
+const brickPadding = 1;
 const brickOffSetTop = 80;
-const brickOffSetleft = 30;
+const brickOffSetleft = $canvas.width / 12;
 const bricks= [];
 const BRICK_STATUS = {
     ACTIVE: 1,
@@ -170,6 +172,8 @@ function paddleMovement() {
 function initEvent() {
     document.addEventListener('keydown', keyDownHandler);
     document.addEventListener('keyup', keyUpHandler);
+    document.addEventListener('touchstart', touchStartHandler, { passive: true });
+    document.addEventListener('touchend', touchEndHandler, { passive: true });
 
     function keyDownHandler(event) {
         const { key } = event;
@@ -189,6 +193,20 @@ function initEvent() {
             leftKeyPressed = false;
         }
     }
+    function touchStartHandler(e) {
+        const touchX = e.touches[0].clientX;
+        if (touchX > $canvas.width / 2) {
+          rightKeyPressed = true;
+        } else {
+          leftKeyPressed = true;
+        }
+      }
+  
+      function touchEndHandler() {
+        rightKeyPressed = false;
+        leftKeyPressed = false;
+      }
+
 }
 
 function draw() {
