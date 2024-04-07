@@ -24,7 +24,7 @@ let y = $canvas.height - 30;
 // velocidad y sentido de la pelota 
 
 let dx = 3
-let dy = -2 + Math.random()
+let dy = -3 - Math.random()
 
 // variables de la barra 
 
