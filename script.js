@@ -31,8 +31,8 @@ let dy = -3 - Math.random()
 const paddleHeight = 10;
 const paddleWidth = 50;
 
-let paddleX = ($canvas.width - paddleWidth) / 2
-let paddleY = $canvas.height - paddleHeight - 10
+let paddleX = ($canvas.width - paddleWidth) / 2 // posicion de la paddle en X
+let paddleY = $canvas.height - paddleHeight - 10 // posicion de la paddle en Y
 
 let rightKeyPressed = false;
 let leftKeyPressed = false;
@@ -147,7 +147,6 @@ function ballMovement() {
         dy *= -1
     }
     const isBallSameXAsPaddle = x > paddleX && x < paddleX + paddleWidth;
-
     const isBallTouchingPaddle = y + dy >= paddleY;
 
     if (isBallSameXAsPaddle && isBallTouchingPaddle) {
@@ -178,18 +177,18 @@ function initEvent() {
     function keyDownHandler(event) {
         const { key } = event;
 
-        if (key === 'Right' || key === 'ArrowRight' || key === 'd') {
+        if (key === 'Right' || key === 'ArrowRight' || key.toLowerCase() === 'd') {
             rightKeyPressed = true;
-        } else  if (key === 'Left' || key === 'ArrowLeft' || key === 'a') {
+        } else  if (key === 'Left' || key === 'ArrowLeft' || key.toLowerCase() === 'a') {
             leftKeyPressed = true;
         }
     }
     function keyUpHandler(event) {
         const { key } = event;
 
-        if (key === 'Right' || key === 'ArrowRight' || key === 'd') {
+        if (key === 'Right' || key === 'ArrowRight' || key.toLowerCase() === 'd') {
             rightKeyPressed = false;
-        } else  if (key === 'Left' || key === 'ArrowLeft' || key === 'a') {
+        } else  if (key === 'Left' || key === 'ArrowLeft' || key.toLowerCase() === 'a') {
             leftKeyPressed = false;
         }
     }
